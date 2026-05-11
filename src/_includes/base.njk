@@ -16,13 +16,16 @@
   <meta property="og:url" content="https://hauspower.ca{{ page.url }}">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Fonts -->
+  <!-- Fonts — Outfit only, display=swap prevents invisible text during load -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="/css/style.css">
+  <!-- Inline font fallback: ensures Outfit applies immediately even before external CSS parses -->
+  <style>body{font-family:'Outfit',sans-serif;}</style>
+
+  <!-- CSS — ?v=2 busts Vercel's immutable cache so all browsers fetch the fixed stylesheet -->
+  <link rel="stylesheet" href="/css/style.css?v=2">
 
   <!-- Page schema injected in body via JSON-LD -->
 </head>
