@@ -11,15 +11,15 @@
 
   /* Typography */
   --font-family-display: "Outfit", sans-serif;
-  --font-family-body: "Inter", sans-serif;
+  --font-family-body: "Outfit", sans-serif;
   --font-family-accent: "Poppins", sans-serif;
 
   /* Sizing */
-  --spacing-section: 6rem;
-  --spacing-section-sm: 4rem;
+  --spacing-section: 7rem;
+  --spacing-section-sm: 5rem;
 }
 
-/* Base */
+/* ── Base ── */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -30,30 +30,47 @@ html {
 
 body {
   font-family: var(--font-family-body);
+  font-size: 17px;
   color: var(--color-hp-dark);
   background: var(--color-hp-white);
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'kern' 1, 'liga' 1;
 }
 
 /* ── Typography ── */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family-display);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.08;
   color: var(--color-hp-dark);
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+p {
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* Tighten letter-spacing less aggressively for h3/h4 */
+h3, h4, h5, h6 {
+  letter-spacing: -0.015em;
 }
 
 /* ── Nav ── */
 .nav-link {
   font-family: var(--font-family-display);
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.9); /* white — all pages start on a dark hero */
+  color: rgba(255,255,255,0.85);
   text-decoration: none;
   transition: color 0.2s;
+  position: relative;
 }
 
 .nav-link:hover,
@@ -61,28 +78,49 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
-/* Switch to dark text once header scrolls onto white background */
-header.scrolled {
-  background: rgba(255,255,255,0.97);
-  box-shadow: 0 1px 20px rgba(16,32,38,0.08);
+/* Underline accent on active */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-hp-red);
 }
 
+/* ── Header scroll: dark frosted glass — keeps white links, no jarring flip ── */
+header.scrolled {
+  background: rgba(16, 32, 38, 0.96);
+  box-shadow: 0 1px 32px rgba(0,0,0,0.28);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Nav stays white on dark scrolled header */
 header.scrolled .nav-link {
-  color: var(--color-hp-dark);
+  color: rgba(255,255,255,0.85);
 }
 
 header.scrolled .nav-link:hover,
 header.scrolled .nav-link.active {
-  color: var(--color-hp-red);
+  color: #fff;
 }
 
-/* 404 page has white background — needs dark nav from the start */
+/* 404 / light pages: dark nav on transparent header */
+body.light-page header:not(.scrolled) {
+  background: rgba(255,255,255,0.97);
+  box-shadow: 0 1px 20px rgba(16,32,38,0.08);
+}
+
 body.light-page header:not(.scrolled) .nav-link {
   color: var(--color-hp-dark);
 }
+
 body.light-page header:not(.scrolled) .nav-link:hover {
   color: var(--color-hp-red);
 }
+
 body.light-page header:not(.scrolled) .hamburger-btn span {
   background: var(--color-hp-dark);
 }
@@ -93,20 +131,21 @@ body.light-page header:not(.scrolled) .hamburger-btn span {
   background: var(--color-hp-red);
   color: #fff;
   font-family: var(--font-family-display);
-  font-weight: 600;
-  font-size: 0.875rem;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.85rem 2rem;
+  padding: 0.9rem 2.25rem;
   border: 2px solid var(--color-hp-red);
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
   cursor: pointer;
 }
 
 .btn-primary:hover {
   background: var(--color-hp-red-dark);
   border-color: var(--color-hp-red-dark);
+  transform: translateY(-1px);
 }
 
 .btn-outline {
@@ -114,20 +153,21 @@ body.light-page header:not(.scrolled) .hamburger-btn span {
   background: transparent;
   color: var(--color-hp-red);
   font-family: var(--font-family-display);
-  font-weight: 600;
-  font-size: 0.875rem;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.85rem 2rem;
+  padding: 0.9rem 2.25rem;
   border: 2px solid var(--color-hp-red);
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
   cursor: pointer;
 }
 
 .btn-outline:hover {
   background: var(--color-hp-red);
   color: #fff;
+  transform: translateY(-1px);
 }
 
 .btn-light {
@@ -135,76 +175,80 @@ body.light-page header:not(.scrolled) .hamburger-btn span {
   background: transparent;
   color: #fff;
   font-family: var(--font-family-display);
-  font-weight: 600;
-  font-size: 0.875rem;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.85rem 2rem;
-  border: 2px solid rgba(255,255,255,0.7);
+  padding: 0.9rem 2.25rem;
+  border: 2px solid rgba(255,255,255,0.55);
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
   cursor: pointer;
 }
 
 .btn-light:hover {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.8);
+  transform: translateY(-1px);
 }
 
 /* ── ECRA badge ── */
 .ecra-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   font-family: var(--font-family-display);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-hp-red);
   border: 1px solid var(--color-hp-red);
-  padding: 0.3rem 0.8rem;
+  padding: 0.35rem 0.85rem;
 }
 
 /* ── Section labels ── */
 .section-label {
   font-family: var(--font-family-display);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-hp-red);
   margin-bottom: 1rem;
+  display: block;
 }
 
 /* ── Cards ── */
 .service-card {
   border-left: 3px solid var(--color-hp-red);
-  padding: 2rem;
+  padding: 2.25rem;
   background: #fff;
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 
 .service-card:hover {
-  box-shadow: 0 8px 32px rgba(16,32,38,0.1);
+  box-shadow: 0 12px 40px rgba(16,32,38,0.1);
+  transform: translateY(-2px);
 }
 
 /* ── Testimonials ── */
 .testimonial-card {
   background: var(--color-hp-light);
-  padding: 2rem;
+  padding: 2.5rem;
   position: relative;
 }
 
 .testimonial-card::before {
   content: "\201C";
-  font-size: 4rem;
+  font-size: 5rem;
   font-family: Georgia, serif;
   color: var(--color-hp-red);
   position: absolute;
-  top: -0.5rem;
-  left: 1.5rem;
+  top: -0.75rem;
+  left: 1.75rem;
   line-height: 1;
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 /* ── FAQ accordion ── */
@@ -217,7 +261,7 @@ body.light-page header:not(.scrolled) .hamburger-btn span {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 1.25rem 0;
+  padding: 1.4rem 0;
   background: none;
   border: none;
   text-align: left;
@@ -226,6 +270,7 @@ body.light-page header:not(.scrolled) .hamburger-btn span {
   font-size: 1rem;
   color: var(--color-hp-dark);
   cursor: pointer;
+  letter-spacing: -0.01em;
 }
 
 .faq-btn svg {
@@ -245,45 +290,49 @@ body.light-page header:not(.scrolled) .hamburger-btn span {
 }
 
 .faq-body p {
-  padding-bottom: 1.25rem;
+  padding-bottom: 1.4rem;
   color: var(--color-hp-mid);
-  line-height: 1.7;
+  line-height: 1.8;
+  font-size: 0.95rem;
 }
 
 /* ── Form ── */
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
 .form-field label {
   font-family: var(--font-family-display);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-hp-mid);
+  color: var(--color-hp-dark);
 }
 
 .form-field input,
 .form-field textarea,
 .form-field select {
   width: 100%;
-  padding: 0.85rem 1rem;
-  border: 1px solid rgba(16,32,38,0.2);
+  padding: 0.9rem 1rem;
+  border: 1.5px solid rgba(16,32,38,0.18);
   font-family: var(--font-family-body);
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--color-hp-dark);
   background: #fff;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .form-field input:focus,
 .form-field textarea:focus,
 .form-field select:focus {
   border-color: var(--color-hp-red);
+  box-shadow: 0 0 0 3px rgba(215,35,39,0.08);
 }
 
 /* ── Hamburger menu ── */
@@ -301,12 +350,13 @@ body.light-page header:not(.scrolled) .hamburger-btn span {
   display: block;
   width: 24px;
   height: 2px;
-  background: rgba(255,255,255,0.9); /* white on dark hero */
+  background: rgba(255,255,255,0.9);
   transition: all 0.3s;
 }
 
+/* Stays white on dark frosted header */
 header.scrolled .hamburger-btn span {
-  background: var(--color-hp-dark); /* dark on white scrolled header */
+  background: rgba(255,255,255,0.9);
 }
 
 .mobile-menu {
@@ -315,12 +365,13 @@ header.scrolled .hamburger-btn span {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 280px;
+  width: 300px;
   background: var(--color-hp-dark);
   z-index: 9999;
-  padding: 5rem 2rem 2rem;
+  padding: 5rem 2.5rem 2.5rem;
   flex-direction: column;
   gap: 1.5rem;
+  box-shadow: -8px 0 40px rgba(0,0,0,0.3);
 }
 
 .mobile-menu.open {
@@ -328,16 +379,22 @@ header.scrolled .hamburger-btn span {
 }
 
 .mobile-menu .nav-link {
-  color: #fff;
+  color: rgba(255,255,255,0.8);
   font-size: 1rem;
+  letter-spacing: 0.1em;
+}
+
+.mobile-menu .nav-link:hover {
+  color: #fff;
 }
 
 .mobile-overlay {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
   z-index: 9998;
+  backdrop-filter: blur(2px);
 }
 
 .mobile-overlay.open {
@@ -348,14 +405,19 @@ header.scrolled .hamburger-btn span {
 .protocol-item {
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
-  padding: 1.5rem;
+  gap: 1.25rem;
+  padding: 1.75rem;
   background: #fff;
+  transition: box-shadow 0.25s;
+}
+
+.protocol-item:hover {
+  box-shadow: 0 4px 20px rgba(16,32,38,0.08);
 }
 
 .protocol-icon {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
   background: var(--color-hp-red);
   display: flex;
   align-items: center;
@@ -365,17 +427,18 @@ header.scrolled .hamburger-btn span {
 
 /* ── Animations (GSAP owns initial state) ── */
 .fade-up {
-  /* No opacity: 0 here — GSAP sets initial state via gsap.set() */
+  /* No opacity:0 here — GSAP sets initial state via gsap.set() */
 }
 
 /* ── Footer ── */
 footer {
   background: var(--color-hp-dark);
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.65);
+  font-size: 0.9rem;
 }
 
 footer a {
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.65);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -413,32 +476,48 @@ footer a:hover {
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
   .hamburger-btn {
     display: flex;
   }
+
   .desktop-nav {
     display: none !important;
   }
+
   .two-col-grid {
     grid-template-columns: 1fr !important;
     gap: 2.5rem !important;
   }
+
   .gallery-grid {
     grid-template-columns: 1fr !important;
   }
+
   .gallery-grid > div {
     grid-column: span 1 !important;
   }
+
   .gallery-grid img {
-    height: 220px !important;
+    height: 240px !important;
   }
+
   .form-row-two {
     grid-template-columns: 1fr;
   }
+
   /* Stat chip: prevent overflow on mobile */
   .stat-chip {
     position: static !important;
     display: inline-block;
     margin-top: 1.5rem;
+  }
+
+  /* Tighten hero padding on mobile */
+  h1 {
+    letter-spacing: -0.02em;
   }
 }
