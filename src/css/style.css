@@ -51,19 +51,40 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--color-hp-dark);
+  color: rgba(255,255,255,0.9); /* white — all pages start on a dark hero */
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--color-hp-red);
+  color: #fff;
 }
 
+/* Switch to dark text once header scrolls onto white background */
 header.scrolled {
   background: rgba(255,255,255,0.97);
   box-shadow: 0 1px 20px rgba(16,32,38,0.08);
+}
+
+header.scrolled .nav-link {
+  color: var(--color-hp-dark);
+}
+
+header.scrolled .nav-link:hover,
+header.scrolled .nav-link.active {
+  color: var(--color-hp-red);
+}
+
+/* 404 page has white background — needs dark nav from the start */
+body.light-page header:not(.scrolled) .nav-link {
+  color: var(--color-hp-dark);
+}
+body.light-page header:not(.scrolled) .nav-link:hover {
+  color: var(--color-hp-red);
+}
+body.light-page header:not(.scrolled) .hamburger-btn span {
+  background: var(--color-hp-dark);
 }
 
 /* ── Buttons ── */
@@ -280,8 +301,12 @@ header.scrolled {
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--color-hp-dark);
+  background: rgba(255,255,255,0.9); /* white on dark hero */
   transition: all 0.3s;
+}
+
+header.scrolled .hamburger-btn span {
+  background: var(--color-hp-dark); /* dark on white scrolled header */
 }
 
 .mobile-menu {
@@ -359,6 +384,33 @@ footer a:hover {
   color: var(--color-hp-red);
 }
 
+/* ── Responsive grid utilities ── */
+.two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: auto auto;
+  gap: 1rem;
+}
+
+.form-row-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+/* ── Scroll indicator animation ── */
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(0.5); }
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .hamburger-btn {
@@ -366,5 +418,27 @@ footer a:hover {
   }
   .desktop-nav {
     display: none !important;
+  }
+  .two-col-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+  .gallery-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .gallery-grid > div {
+    grid-column: span 1 !important;
+  }
+  .gallery-grid img {
+    height: 220px !important;
+  }
+  .form-row-two {
+    grid-template-columns: 1fr;
+  }
+  /* Stat chip: prevent overflow on mobile */
+  .stat-chip {
+    position: static !important;
+    display: inline-block;
+    margin-top: 1.5rem;
   }
 }
