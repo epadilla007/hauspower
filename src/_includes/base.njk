@@ -6,6 +6,7 @@
   <title>{{ title }} | HausPower</title>
   <meta name="description" content="{{ description or 'HausPower offers premium electrical services for luxury homes in Kitchener-Waterloo. Expert installations and smart home technology integration.' }}">
   <link rel="canonical" href="https://hauspower.ca{{ page.url }}">
+  <link rel="icon" href="/favicon.ico">
 
   <!-- OG tags -->
   <meta property="og:type" content="website">
@@ -25,7 +26,7 @@
 
   <!-- Page schema injected in body via JSON-LD -->
 </head>
-<body>
+<body class="{{ bodyClass or '' }}">
 
   <!-- Header -->
   <header id="site-header" style="position:fixed;top:0;left:0;right:0;z-index:1000;transition:background 0.3s,box-shadow 0.3s;background:transparent;padding:1.25rem 0;" aria-label="Site header">
@@ -121,7 +122,7 @@
               Kitchener-Waterloo, Ontario
             </li>
             <li style="margin-top:0.5rem;">
-              <a href="https://instagram.com/smarthaus.ca" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.5rem;">
+              <a href="https://instagram.com/smarthaus.ca" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:0.5rem;">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                 @smarthaus.ca
               </a>
