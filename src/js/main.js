@@ -10,17 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const logo = document.getElementById('header-logo');
 
   if (header) {
+    // Header stays dark always — frosted glass on scroll, transparent at top.
+    // Logo always stays as the light (white) version. No swap needed.
     const handleScroll = () => {
       if (window.scrollY > 60) {
         header.classList.add('scrolled');
-        if (logo) {
-          logo.src = '/images/HORIZONTAL-LOGO.svg';
-        }
       } else {
         header.classList.remove('scrolled');
-        if (logo) {
-          logo.src = '/images/HORIZONTAL-LIGHT-LOGO.svg';
-        }
       }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
