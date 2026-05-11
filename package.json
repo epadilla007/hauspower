@@ -1,0 +1,17 @@
+{
+  "name": "hauspower",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "start": "npx @11ty/eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.0",
+    "tailwindcss": "^4.2.0"
+  },
+  "type": "module"
+}

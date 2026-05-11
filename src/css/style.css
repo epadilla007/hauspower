@@ -1,0 +1,370 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors */
+  --color-hp-red: #d72327;
+  --color-hp-red-dark: #b81c20;
+  --color-hp-dark: #102026;
+  --color-hp-mid: #727272;
+  --color-hp-light: #e9eaf4;
+  --color-hp-white: #ffffff;
+
+  /* Typography */
+  --font-family-display: "Outfit", sans-serif;
+  --font-family-body: "Inter", sans-serif;
+  --font-family-accent: "Poppins", sans-serif;
+
+  /* Sizing */
+  --spacing-section: 6rem;
+  --spacing-section-sm: 4rem;
+}
+
+/* Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-body);
+  color: var(--color-hp-dark);
+  background: var(--color-hp-white);
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-display);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-hp-dark);
+}
+
+/* ── Nav ── */
+.nav-link {
+  font-family: var(--font-family-display);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-hp-dark);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-hp-red);
+}
+
+header.scrolled {
+  background: rgba(255,255,255,0.97);
+  box-shadow: 0 1px 20px rgba(16,32,38,0.08);
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-block;
+  background: var(--color-hp-red);
+  color: #fff;
+  font-family: var(--font-family-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border: 2px solid var(--color-hp-red);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--color-hp-red-dark);
+  border-color: var(--color-hp-red-dark);
+}
+
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: var(--color-hp-red);
+  font-family: var(--font-family-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border: 2px solid var(--color-hp-red);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: var(--color-hp-red);
+  color: #fff;
+}
+
+.btn-light {
+  display: inline-block;
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-family-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border: 2px solid rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.btn-light:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* ── ECRA badge ── */
+.ecra-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-family-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-hp-red);
+  border: 1px solid var(--color-hp-red);
+  padding: 0.3rem 0.8rem;
+}
+
+/* ── Section labels ── */
+.section-label {
+  font-family: var(--font-family-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-hp-red);
+  margin-bottom: 1rem;
+}
+
+/* ── Cards ── */
+.service-card {
+  border-left: 3px solid var(--color-hp-red);
+  padding: 2rem;
+  background: #fff;
+  transition: box-shadow 0.3s;
+}
+
+.service-card:hover {
+  box-shadow: 0 8px 32px rgba(16,32,38,0.1);
+}
+
+/* ── Testimonials ── */
+.testimonial-card {
+  background: var(--color-hp-light);
+  padding: 2rem;
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: "\201C";
+  font-size: 4rem;
+  font-family: Georgia, serif;
+  color: var(--color-hp-red);
+  position: absolute;
+  top: -0.5rem;
+  left: 1.5rem;
+  line-height: 1;
+  opacity: 0.4;
+}
+
+/* ── FAQ accordion ── */
+.faq-item {
+  border-bottom: 1px solid rgba(16,32,38,0.1);
+}
+
+.faq-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1.25rem 0;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: var(--font-family-display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-hp-dark);
+  cursor: pointer;
+}
+
+.faq-btn svg {
+  flex-shrink: 0;
+  transition: transform 0.3s;
+  color: var(--color-hp-red);
+}
+
+.faq-btn[aria-expanded="true"] svg {
+  transform: rotate(45deg);
+}
+
+.faq-body {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease;
+}
+
+.faq-body p {
+  padding-bottom: 1.25rem;
+  color: var(--color-hp-mid);
+  line-height: 1.7;
+}
+
+/* ── Form ── */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-field label {
+  font-family: var(--font-family-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-hp-mid);
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(16,32,38,0.2);
+  font-family: var(--font-family-body);
+  font-size: 1rem;
+  color: var(--color-hp-dark);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border-color: var(--color-hp-red);
+}
+
+/* ── Hamburger menu ── */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-hp-dark);
+  transition: all 0.3s;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 280px;
+  background: var(--color-hp-dark);
+  z-index: 9999;
+  padding: 5rem 2rem 2rem;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+.mobile-menu .nav-link {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 9998;
+}
+
+.mobile-overlay.open {
+  display: block;
+}
+
+/* ── Safety protocol grid ── */
+.protocol-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #fff;
+}
+
+.protocol-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--color-hp-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Animations (GSAP owns initial state) ── */
+.fade-up {
+  /* No opacity: 0 here — GSAP sets initial state via gsap.set() */
+}
+
+/* ── Footer ── */
+footer {
+  background: var(--color-hp-dark);
+  color: rgba(255,255,255,0.7);
+}
+
+footer a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: var(--color-hp-red);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex;
+  }
+  .desktop-nav {
+    display: none !important;
+  }
+}
