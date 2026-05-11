@@ -29,20 +29,20 @@
 <body class="{{ bodyClass or '' }}">
 
   <!-- Header -->
-  <header id="site-header" style="position:fixed;top:0;left:0;right:0;z-index:1000;transition:background 0.3s,box-shadow 0.3s;background:transparent;padding:1.25rem 0;" aria-label="Site header">
-    <div style="max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;">
+  <header id="site-header" style="position:fixed;top:0;left:0;right:0;z-index:1000;transition:background 0.35s ease,box-shadow 0.35s ease,backdrop-filter 0.35s ease;background:transparent;padding:1.4rem 0;" aria-label="Site header">
+    <div style="max-width:1280px;margin:0 auto;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;">
 
-      <!-- Logo -->
+      <!-- Logo — always light (header stays dark) -->
       <a href="/" aria-label="HausPower home">
-        <img src="/images/HORIZONTAL-LIGHT-LOGO.svg" alt="HausPower" width="220" height="50" id="header-logo" style="height:44px;width:auto;transition:opacity 0.3s;">
+        <img src="/images/HORIZONTAL-LIGHT-LOGO.svg" alt="HausPower" width="200" height="46" id="header-logo" style="height:40px;width:auto;display:block;">
       </a>
 
       <!-- Desktop nav -->
-      <nav class="desktop-nav" style="display:flex;align-items:center;gap:2.5rem;" aria-label="Main navigation">
+      <nav class="desktop-nav" style="display:flex;align-items:center;gap:3rem;" aria-label="Main navigation">
         <a href="/" class="nav-link {% if page.url == '/' %}active{% endif %}">Home</a>
-        <a href="/our-services/" class="nav-link {% if '/our-services' in page.url %}active{% endif %}">Our Services</a>
+        <a href="/our-services/" class="nav-link {% if '/our-services' in page.url %}active{% endif %}">Services</a>
         <a href="/safety-standards/" class="nav-link {% if '/safety-standards' in page.url %}active{% endif %}">Safety</a>
-        <a href="/request-a-quote/" class="btn-primary" style="padding:0.65rem 1.5rem;">Get a Quote</a>
+        <a href="/request-a-quote/" class="btn-primary" style="padding:0.7rem 1.6rem;font-size:0.75rem;">Get a Quote</a>
       </nav>
 
       <!-- Hamburger -->
@@ -76,9 +76,9 @@
   </main>
 
   <!-- Footer -->
-  <footer style="background:#102026;color:rgba(255,255,255,0.7);padding:5rem 0 2rem;">
-    <div style="max-width:1280px;margin:0 auto;padding:0 2rem;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:3rem;margin-bottom:4rem;">
+  <footer style="background:#102026;color:rgba(255,255,255,0.65);padding:6rem 0 2.5rem;">
+    <div style="max-width:1280px;margin:0 auto;padding:0 2.5rem;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:4rem;margin-bottom:5rem;">
 
         <!-- Brand -->
         <div>
